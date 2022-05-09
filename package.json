@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx wdio run ./wdio.conf.js",
-    "config": "npx wdio run "
+    "test": "npx wdio run ./wdio.conf.js"
   },
   "author": "",
   "license": "ISC",
@@ -17,7 +16,7 @@
     "chromedriver": "^101.0.0",
     "eslint": "^8.15.0",
     "eslint-plugin-wdio": "^7.19.4",
-    "wdio-chromedriver-service": "^7.3.2"
-  },
-  "dependencies": {}
+    "wdio-chromedriver-service": "^7.3.2",
+    "wdio-wait-for": "^2.2.6"
+  }
 }
