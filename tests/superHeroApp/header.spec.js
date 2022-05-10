@@ -1,9 +1,6 @@
 const LoginPage = require('../../pages/superHoroApp/login.page');
 const HeaderPageObj = require('../../pages/superHoroApp/header.page');
 const assert = require('assert');
-
-// const assert = require('assert');
-
 describe('Header test suite', () => {
   beforeEach(async () => {
     await browser.url('/');
@@ -34,7 +31,6 @@ describe('Header test suite', () => {
     await HeaderPageObj.wolverineModalWindow.waitForDisplayed({ reverse: true });
     assert.equal(await HeaderPageObj.wolverineModalWindow.isDisplayed(), false, 'Modal is displayed');
   });
-
   it('should open read and close spiderman modal', async () => {
     await HeaderPageObj.expander.click();
     await HeaderPageObj.heroFactsLink.waitForClickable();
@@ -53,7 +49,6 @@ describe('Header test suite', () => {
     await HeaderPageObj.spidermanModalWindow.waitForDisplayed({ reverse: true });
     assert.equal(await HeaderPageObj.spidermanModalWindow.isDisplayed(), false, 'Modal is displayed');
   });
-
   it('should test logout no credintials', async () => {
     await HeaderPageObj.expander.click();
     await HeaderPageObj.logoutLink.waitForClickable();

@@ -4,7 +4,6 @@ const IntroPage = require('../../pages/superHoroApp/intro.page');
 const RosterPage = require('../../pages/superHoroApp/roster.page');
 const VotePage = require('../../pages/superHoroApp/vote.page');
 const assert = require('assert');
-
 describe('Smoke test suite', () => {
   describe('Login Page', () => {
     it('should verify static elements for login', async () => {
@@ -38,13 +37,11 @@ describe('Smoke test suite', () => {
       assert.equal(await HeaderPage.searchField.isDisplayed(), true, 'HeaderPage.searchField not displayed');
       assert.equal(await HeaderPage.searchButton.isDisplayed(), true, 'HeaderPage.searchButton not displayed');
     });
-
     it('should verify static elements for intro', async () => {
       // test intro
       assert.equal(await IntroPage.heading.isDisplayed(), true, 'IntroPage.heading not displayed');
       assert.equal(await IntroPage.image.isDisplayed(), true, 'IntroPage.image not displayed');
     });
-
     it('should verify static elements for roster', async () => {
       assert.equal(await RosterPage.instructions.isDisplayed(), true, 'RosterPage.instructions not displayed');
       assert.equal(await RosterPage.heading.isDisplayed(), true, 'RosterPage.heading not displayed');
@@ -57,7 +54,6 @@ describe('Smoke test suite', () => {
       assert.equal(await RosterPage.heroInputField.isDisplayed(), true, 'RosterPage.heroInputField not displayed');
       assert.equal(await RosterPage.heroSubmit.isDisplayed(), true, 'RosterPage.heroSubmit not displayed');
     });
-    // test header
     it('should verify static elements for vote', async () => {
       assert.equal(await VotePage.voteForm.isDisplayed(), true, 'VotePage.voteForm not displayed');
       assert.equal(await VotePage.xmenItemLabel.isDisplayed(), true, 'VotePage.xmenItemLabel not displayed');

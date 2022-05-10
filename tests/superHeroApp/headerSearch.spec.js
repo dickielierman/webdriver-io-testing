@@ -1,16 +1,12 @@
 const LoginPage = require('../../pages/superHoroApp/login.page');
 const HeaderPageObj = require('../../pages/superHoroApp/header.page');
 const assert = require('assert');
-
-// const assert = require('assert');
-
 describe('Header test suite', () => {
   beforeEach(async () => {
     await browser.url('/');
     await LoginPage.login('1@2.com', 'password', false);
     assert.equal(await LoginPage.overlay.isDisplayed(), false, 'Login overlay is still displayed');
   });
-
   it('should search for wolverine', async () => {
     await HeaderPageObj.expander.click();
     // await $('#navbarSupportedContent').waitForDisplayed();
@@ -23,7 +19,6 @@ describe('Header test suite', () => {
     await browser.acceptAlert();
     assert.equal(await browser.isAlertOpen(), false, 'Alert is still open');
   });
-
   it('should search for something other than wolverine and fail', async () => {
     await HeaderPageObj.expander.click();
     await HeaderPageObj.searchField.waitForClickable();

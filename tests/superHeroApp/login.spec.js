@@ -1,7 +1,6 @@
 const LoginPage = require('../../pages/superHoroApp/login.page');
 const HeaderPage = require('../../pages/superHoroApp/header.page');
 const assert = require('assert');
-
 describe('Login test suite', () => {
   beforeEach(async () => {
     await browser.url('/');

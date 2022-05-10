@@ -1,7 +1,6 @@
 const LoginPage = require('../../pages/superHoroApp/login.page');
 const VotePage = require('../../pages/superHoroApp/vote.page');
 const assert = require('assert');
-
 describe('Voting test suite', () => {
   beforeEach(async () => {
     await browser.url('/');
