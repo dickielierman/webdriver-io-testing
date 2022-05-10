@@ -1,14 +1,11 @@
-const LoginPage = require('../pages/login.page');
-const VotePage = require('../pages/vote.page');
+const LoginPage = require('../../pages/superHoroApp/login.page');
+const VotePage = require('../../pages/superHoroApp/vote.page');
 const assert = require('assert');
 
 describe('Voting test suite', () => {
   beforeEach(async () => {
     await browser.url('/');
-    await LoginPage.emailField.setValue('1@2.com');
-    await LoginPage.passwordField.setValue('password');
-    await LoginPage.rememberMe.click();
-    await LoginPage.btnSubmit.click();
+    await LoginPage.login('1@2.com', 'password', false);
     assert.equal(await LoginPage.overlay.isDisplayed(), false, 'Login overlay is still displayed');
   });
   it('should increment vote', async () => {

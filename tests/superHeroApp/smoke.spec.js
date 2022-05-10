@@ -1,8 +1,8 @@
-const LoginPage = require('../pages/login.page');
-const HeaderPage = require('../pages/header.page');
-const IntroPage = require('../pages/intro.page');
-const RosterPage = require('../pages/roster.page');
-const VotePage = require('../pages/vote.page');
+const LoginPage = require('../../pages/superHoroApp/login.page');
+const HeaderPage = require('../../pages/superHoroApp/header.page');
+const IntroPage = require('../../pages/superHoroApp/intro.page');
+const RosterPage = require('../../pages/superHoroApp/roster.page');
+const VotePage = require('../../pages/superHoroApp/vote.page');
 const assert = require('assert');
 
 describe('Smoke test suite', () => {
@@ -22,10 +22,7 @@ describe('Smoke test suite', () => {
   describe('Main Page', () => {
     beforeEach(async () => {
       await browser.url('/');
-      await LoginPage.emailField.setValue('1@2.com');
-      await LoginPage.passwordField.setValue('password');
-      await LoginPage.rememberMe.click();
-      await LoginPage.btnSubmit.click();
+      await LoginPage.login('1@2.com', 'password', false);
     });
     it('should verify static elements for header', async () => {
       assert.equal(await HeaderPage.expander.isDisplayed(), true, 'HeaderPage.expander not displayed');

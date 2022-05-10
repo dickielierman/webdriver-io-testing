@@ -15,40 +15,15 @@ class RosterPage {
     return $(selector);
   }
 
-  // each hero in list
-  get wolverineItem() {
-    const selector = '#hero-list > li:nth-child(1)';
-    $(selector).waitForDisplayed();
-    return $(selector);
-  }
-  get ironManItem() {
-    const selector = '#hero-list > li:nth-child(2)';
-    $(selector).waitForDisplayed();
-    return $(selector);
-  }
-  get deadpoolItem() {
-    const selector = '#hero-list > li:nth-child(3)';
-    $(selector).waitForDisplayed();
-    return $(selector);
-  }
-  get thorItem() {
-    const selector = '#hero-list > li:nth-child(4)';
-    $(selector).waitForDisplayed();
-    return $(selector);
-  }
-  get spiderManItem() {
-    const selector = '#hero-list > li:nth-child(5)';
-    $(selector).waitForDisplayed();
-    return $(selector);
+  get rosterItems() {
+    const selector = '#hero-list > li';
+    return $$(selector);
   }
   get newItem() {
     const selector = '#hero-list > li:nth-child(6)';
     $(selector).waitForDisplayed();
     return $(selector);
   }
-
-  // end heroes
-
   get heroInputLabel() {
     const selector = 'label[for="heroInput"]';
     $(selector).waitForDisplayed();
@@ -63,6 +38,10 @@ class RosterPage {
     const selector = '#addHero-form > button';
     $(selector).waitForDisplayed();
     return $(selector);
+  }
+  async addHero(hero) {
+    await this.heroInputField.setValue(hero);
+    await this.heroSubmit.click();
   }
 }
 

@@ -1,5 +1,5 @@
-const LoginPage = require('../pages/login.page');
-const HeaderPageObj = require('../pages/header.page');
+const LoginPage = require('../../pages/superHoroApp/login.page');
+const HeaderPageObj = require('../../pages/superHoroApp/header.page');
 const assert = require('assert');
 
 // const assert = require('assert');
@@ -7,9 +7,7 @@ const assert = require('assert');
 describe('Header test suite', () => {
   beforeEach(async () => {
     await browser.url('/');
-    await LoginPage.emailField.setValue('1@2.com');
-    await LoginPage.passwordField.setValue('password');
-    await LoginPage.btnSubmit.click();
+    await LoginPage.login('1@2.com', 'password', false);
     assert.equal(await LoginPage.overlay.isDisplayed(), false, 'Login overlay is still displayed');
   });
 
