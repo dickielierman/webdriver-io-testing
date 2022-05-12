@@ -4,11 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx wdio run ./wdio.conf.js"
+    "test": "./node_modules/.bin/wdio",
+    "testSuperHeroApp": "npx wdio run ./wdioSuperHero.conf.js --suite superHeroApp",
+    "testTodoApp": "npx wdio run ./wdioTodo.conf.js --suite toDoApp",
+    "runAllureReportsSHA": "allure generate sha-allure-results --clean",
+    "runAllureReportsTDA": "allure generate tda-allure-results --clean",
+    "openAllure": "allure open",
+    "clean-results": "rimraf sha-allure-results tda-allure-results allure-report"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@wdio/allure-reporter": "^7.19.7",
     "@wdio/cli": "^7.19.7",
     "@wdio/local-runner": "^7.19.7",
     "@wdio/mocha-framework": "^7.19.7",
@@ -17,6 +24,10 @@
     "eslint": "^8.15.0",
     "eslint-plugin-wdio": "^7.19.4",
     "wdio-chromedriver-service": "^7.3.2",
+    "wdio-video-reporter": "^3.2.1",
     "wdio-wait-for": "^2.2.6"
+  },
+  "dependencies": {
+    "chai": "^4.3.6"
   }
 }

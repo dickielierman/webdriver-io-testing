@@ -11,7 +11,7 @@ describe('Intro test suite', () => {
     assert.equal(await IntroPage.heading.getText(), 'Superhero Roster', 'Header is incorrect');
   });
   it('should display the correct image', async () => {
-    assert.equal(await IntroPage.image.getProperty('src'), `http://localhost:8080/images/superhero.png`, 'Image is incorrect');
+    assert.equal(await IntroPage.image.getProperty('src'), `http://localhost:3000/images/superhero.png`, 'Image is incorrect');
     assert.equal(await IntroPage.image.getProperty('alt'), `Superhero Image`, 'Image alt is incorrect');
   });
 });

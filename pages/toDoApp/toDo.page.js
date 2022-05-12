@@ -9,12 +9,10 @@ class ToDoPage {
     $(selector).waitForDisplayed();
     return $(selector);
   }
-  // Row starts at one
-  async todoItemByRow(row) {
-    const selector = `body > section > div > section > ul > li:nth-child(${row}) > div > label`;
-    await $(selector).waitForDisplayed();
-    const todoItem = await $(selector);
-    return todoItem;
+  get toDoTitle() {
+    const selector = 'body > section > div > header > h1';
+    $(selector).waitForDisplayed();
+    return $(selector);
   }
   get todoItems() {
     const selector = `body > section > div > section > ul > li > div > label`;
@@ -23,12 +21,6 @@ class ToDoPage {
   get todoItemDeleteButtons() {
     const selector = `body > section > div > section > ul > li > div > button`;
     return $$(selector);
-  }
-  async todoDeleteButtonByRow(row) {
-    const selector = `body > section > div > section > ul > li:nth-child(${row}) > div > button`;
-    await $(selector).waitForDisplayed();
-    const todoItem = await $(selector);
-    return todoItem;
   }
   get cancelToggle1() {
     const selector = 'body > section > div > section > ul > li > div > button';
@@ -43,6 +35,19 @@ class ToDoPage {
   async createTodo(val) {
     await this.toDoField.setValue(val);
     await browser.keys('Enter');
+  }
+  async todoDeleteButtonByRow(row) {
+    const selector = `body > section > div > section > ul > li:nth-child(${row}) > div > button`;
+    await $(selector).waitForDisplayed();
+    const todoItem = await $(selector);
+    return todoItem;
+  }
+  // Row starts at one
+  async todoItemByRow(row) {
+    const selector = `body > section > div > section > ul > li:nth-child(${row}) > div > label`;
+    await $(selector).waitForDisplayed();
+    const todoItem = await $(selector);
+    return todoItem;
   }
 }
 module.exports = new ToDoPage();

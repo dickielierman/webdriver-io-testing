@@ -9,7 +9,7 @@ describe('Header test suite', () => {
   });
   it('should redirect to new site', async () => {
     await HeaderPageObj.expander.click();
-    await HeaderPageObj.linkLink.waitForDisplayed();
+    await HeaderPageObj.linkLink.waitForClickable();
     await HeaderPageObj.linkLink.click();
     assert.equal(await browser.getUrl(), 'https://glitchitsystem.com/', ``);
   });

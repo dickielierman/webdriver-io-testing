@@ -20,11 +20,28 @@ exports.config = {
   // then the current working directory is where your `package.json` resides, so `wdio`
   // will be called from there.
   //
-  specs: ['./tests/superHeroApp/*.spec.js'],
+  specs: ['./tests/**/*.spec.js'],
   // Patterns to exclude.
-  exclude: [
-    // 'path/to/excluded/files'
-  ],
+  // exclude: ['./tests/superHeroApp/*.spec.js'],
+  suites: {
+    toDoApp: [
+      './tests/toDoApp/toDo.spec.js',
+      './tests/toDoApp/moreTodo.spec.js',
+      './tests/toDoApp/dynamicSelectors.spec.js',
+      './tests/toDoApp/chaiShould.spec.js',
+      './tests/toDoApp/chaiExpect.spec.js',
+      './tests/toDoApp/chaiAssert.spec.js',
+    ],
+    superHeroApp: [
+      './tests/superHeroApp/smoke.spec.js',
+      './tests/superHeroApp/login.spec.js',
+      './tests/superHeroApp/header.spec.js',
+      './tests/superHeroApp/headerSearch.spec.js',
+      './tests/superHeroApp/intro.spec.js',
+      './tests/superHeroApp/roster.spec.js',
+      './tests/superHeroApp/vote.spec.js',
+    ],
+  },
   //
   // ============
   // Capabilities
@@ -69,7 +86,7 @@ exports.config = {
   // Define all options that are relevant for the WebdriverIO instance here
   //
   // Level of logging verbosity: trace | debug | info | warn | error | silent
-  logLevel: 'info',
+  logLevel: 'error',
   //
   // Set specific log levels per logger
   // loggers:
@@ -93,7 +110,7 @@ exports.config = {
   // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
   // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
   // gets prepended directly.
-  baseUrl: 'http://localhost:8080/',
+  baseUrl: 'http://localhost:8080',
   //
   // Default timeout for all waitFor* commands.
   waitforTimeout: 10000,
@@ -131,7 +148,10 @@ exports.config = {
   // Test reporter for stdout.
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter
-  reporters: ['spec'],
+  reporters: [
+    'spec',
+    ['allure', { outputDir: 'tda-allure-results', disableWebdriverStepsReporting: true, disableWebdriverScreenshotsReporting: false }],
+  ],
 
   //
   // Options to be passed to Mocha.
@@ -192,8 +212,10 @@ exports.config = {
    * @param {Array.<String>} specs        List of spec file paths that are to be run
    * @param {Object}         browser      instance of created browser/device session
    */
-  // before: function (capabilities, specs) {
-  // },
+  before: function () {
+    const assert = require('assert');
+    global.assert = assert;
+  },
   /**
    * Runs before a WebdriverIO command gets executed.
    * @param {String} commandName hook command name
@@ -234,8 +256,11 @@ exports.config = {
    * @param {Boolean} result.passed    true if test has passed, otherwise false
    * @param {Object}  result.retries   informations to spec related retries, e.g. `{ attempts: 0, limit: 0 }`
    */
-  // afterTest: function(test, context, { error, result, duration, passed, retries }) {
-  // },
+  afterTest: async function (test, context, { error }) {
+    if (error) {
+      await browser.takeScreenshot();
+    }
+  },
 
   /**
    * Hook that gets executed after the suite has ended

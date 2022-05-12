@@ -1,9 +1,9 @@
 const TodoPage = require('../../pages/toDoApp/toDo.page');
-const assert = require('assert');
 
-describe('Todo test suite', () => {
+describe('Todo test suite: Dynamic Selectors', () => {
   beforeEach(async () => {
     await browser.url('');
+    await browser.maximizeWindow();
   });
   it('should create todos', async () => {
     const todoList = ['Thing one', 'another thing', 'a third thing', 'We should do a total of four things'];
@@ -22,7 +22,6 @@ describe('Todo test suite', () => {
       }
     }
   });
-
   it('should create todos and work with list of elements', async () => {
     const todoList = ['Job One', 'Job Two', 'Job Three', 'Job Four'];
     for (let i = 0; i < todoList.length; i++) {
@@ -33,7 +32,6 @@ describe('Todo test suite', () => {
     await jobOneElem.moveTo(0, 0);
     const delJobOneElem = await TodoPage.todoItemDeleteButtons[todoList.indexOf('Job One')];
     await delJobOneElem.click();
-    await browser.pause(5000);
   });
   it('should loop through elements backwards', async () => {
     const todoList = ['Job One', 'Job Two', 'Job Three', 'Job Four'];
